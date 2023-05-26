@@ -1,2 +1,2 @@
 # datastructures-algs
-A DSA compliations just for fun the fun of it
+A DSA compilation just for fun the fun of it!
