@@ -1,0 +1,64 @@
+Given on-call rotation schedule for multiple people by: their unique name, 
+start time (timestamp 0-max int64) and end time (timestamp 0-max int64) of the rotation:
+
+Example input:
+
+Name  | Start | End
+----- | ----- | ---
+Abby  | 10    | 100
+Ben   | 50    | 70
+Carla | 60    | 120
+David | 150   | 300
+
+Your goal is to return a rotation table without overlapping periods representing who is 
+on call during that time.
+
+Return "Start time", "End time" and list of on-call people:
+
+Do not include time periods that do not have on-call people. Specifically in the given 
+example, this means excluding the period between 120-150.
+
+Example input:    Example output:
+
+Name  | Start | End   |  Start | End | Names
+----- | ----- | ---   |  ----- | --- | ----------------
+Abby  | 10    | 100   |  10    | 50  | Abby
+Ben   | 50    | 70    |  50    | 60  | Abby, Ben
+Carla | 60    | 120   |  60    | 70  | Abby, Ben, Carla
+David | 150   | 300   |  70    | 100 | Abby, Carla
+                      |  100   | 120 | Carla
+                      |  150   | 300 | David
+
+[10, 50, 60, 70, 100, 120, 150, 300]
+
+
+
+def rotation(schedule):
+  #input is a list ot tuples (name, start, end)
+  # 
+  
+  result = []
+  times = []
+  
+  for n in schedule:
+    times.append(n[1])
+    times.append(n(2))
+    
+    #interval2.start <interval1.end && interval2.end >= interval1.start
+    #interval 2 = times 
+    #interval 1 = schedule(start and end times for each person)
+  lower = 0
+  higher = 1
+  
+  for person in schedule:
+    for i in xrange(len(times)-1):
+      if person[1] < t[lower] && person[2] >= t[higher]:
+        result.append(person)
+        lower = higher
+        higher += 1
+        
+        
+    print("name | Start | End"):
+    print("----- | ------ | --------")
+    for n in result:
+      print(f"{person[0]} | {person[1]} | {person[2]}"
